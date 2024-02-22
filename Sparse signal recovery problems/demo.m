@@ -70,7 +70,7 @@ Tcpu1 = times_1(end);
 iter1 = length(history1.objval);
 Fval1 = history1.objval(end);
 MSE1 = history1.mse(end);
-fprintf(' BSALPSQP terminated: iter %d, time %0.2f, fval %.3f, MSE %3.2e\n', iter1, Tcpu1, Fval1, MSE1)
+fprintf(' SALM_psils terminated: iter %d, time %0.2f, fval %.3f, MSE %3.2e\n', iter1, Tcpu1, Fval1, MSE1)
         
 %         % VBSALPSQP with variable Hessian without performing the Armijo line search
 %         [x2,y2,Tcpu2,history2] = nqL1rpvHwl(A,b,gamma,w,opts);
@@ -91,7 +91,7 @@ Tcpu3 = times_3(end);
 iter3 = length(history3.objval);
 Fval3 = history3.objval(end);
 MSE3 = history3.mse(end);
-fprintf(' VBSALPSQP_c terminated: iter %d, time %0.2f, fval %.3f, MSE %3.2e\n', iter3, Tcpu3, Fval3, MSE3)
+fprintf(' SALM_psilsf terminated: iter %d, time %0.2f, fval %.3f, MSE %3.2e\n', iter3, Tcpu3, Fval3, MSE3)
         
 % proximal ADMM-g
 clear opts
@@ -137,7 +137,7 @@ hold on
 plot(1:K3, history3.mse, '-+k', 'LineWidth', 2);
 plot(1:K4, history4.mse, '-.b', 'LineWidth', 2);
 plot(1:K5, history5.mse, '-.g', 'LineWidth', 2);
-legend('BSALPSQP','VBSALPSQP','ADMM-g','ADMM')
+legend('SALM\_psils','SALM\_psilsf','ADMM-g','ADMM')
 set(gca,'FontName','Times','FontSize',16)
 ylabel('MSE'); xlabel('Itr');
 title(sprintf('m=%d, n=%d, r=%d, gamma=%g',m,n,n_spikes,gamma))
@@ -149,7 +149,7 @@ hold on
 plot(times_3,history3.mse,'-+k', 'LineWidth',2)
 plot(times_4,history4.mse, '-.b', 'LineWidth', 2);
 plot(times_5, history5.mse, '-.g', 'LineWidth', 2);
-legend('BSALPSQP','VBSALPSQP','ADMM-g','ADMM')
+legend('SALM\_psils','SALM\_psilsf','ADMM-g','ADMM')
 set(gca,'FontName','Times','FontSize',16)
 xlabel('CPU time (seconds)')
 ylabel('MSE')
